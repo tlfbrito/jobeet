@@ -1,0 +1,18 @@
+parameters:
+#    be_ubi_jobeet.example.class: BeUbi\JobeetBundle\Example
+
+services:
+#    be_ubi_jobeet.example:
+#        class: %be_ubi_jobeet.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+    beubi.jobeet.admin.category:
+        class: BeUbi\JobeetBundle\Admin\CategoryAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: jobeet, label: Categories }
+        arguments: [null, BeUbi\JobeetBundle\Entity\Category, BeUbiJobeetBundle:CategoryAdmin]
+ 
+    beubi.jobeet.admin.job:
+        class: BeUbi\JobeetBundle\Admin\JobAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: jobeet, label: Jobs }
+        arguments: [null, BeUbi\JobeetBundle\Entity\Job, BeUbiJobeetBundle:JobAdmin]

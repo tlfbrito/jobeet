@@ -1,0 +1,22 @@
+BeUbi\JobeetBundle\Entity\CategoryAffiliate:
+    type: entity
+    table: category_affiliate
+    fields:
+        id:
+            type: integer
+            id: true
+            generator: { strategy: AUTO }
+    manyToOne:
+    category:
+        targetEntity: Category
+        inversedBy: category_affiliates
+        joinColumn:
+            name: category_id
+            referencedColumnName: id
+    affiliate:
+        targetEntity: Affiliate
+        inversedBy: category_affiliates
+        joinColumn:
+            name: affiliate_id
+            referencedColumnName: id
+    lifecycleCallbacks: {  }

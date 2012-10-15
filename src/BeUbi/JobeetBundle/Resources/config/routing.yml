@@ -1,0 +1,18 @@
+login:
+    pattern:   /login
+    defaults:  { _controller: BeUbiJobeetBundle:Default:login }
+login_check:
+    pattern:   /login_check
+logout:
+    pattern:   /logout
+BeUbiJobeetBundle_category:
+    pattern: /category/{slug}/{page}
+    defaults: { _controller: BeUbiJobeetBundle:Category:show, page: 1 }
+
+be_ubi_jobeet_homepage:
+    pattern:  /
+    defaults: { _controller: BeUbiJobeetBundle:Job:index }
+
+BeUbiJobeetBundle_beubi_job:
+        resource: "@BeUbiJobeetBundle/Resources/config/routing/job.yml"
+        prefix:   /job

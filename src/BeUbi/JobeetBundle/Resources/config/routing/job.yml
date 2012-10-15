@@ -1,0 +1,44 @@
+beubi_job:
+    pattern:  /
+    defaults: { _controller: "BeUbiJobeetBundle:Job:index" }
+
+beubi_job_show:
+#    pattern:  /{id}/show
+    pattern:  /{company}/{location}/{id}/{position}
+    defaults: { _controller: "BeUbiJobeetBundle:Job:show" }
+    requirements: # validation
+        id:  \d+
+ 
+beubi_job_preview:
+    pattern:  /{company}/{location}/{token}/{position}
+    defaults: { _controller: "BeUbiJobeetBundle:Job:preview" }
+    requirements:
+        token:  \w+
+
+beubi_job_new:
+    pattern:  /new
+    defaults: { _controller: "BeUbiJobeetBundle:Job:new" }
+
+beubi_job_create:
+    pattern:  /create
+    defaults: { _controller: "BeUbiJobeetBundle:Job:create" }
+    requirements: { _method: post }
+
+beubi_job_edit:
+    pattern:  /{token}/edit
+    defaults: { _controller: "BeUbiJobeetBundle:Job:edit" }
+
+beubi_job_update:
+    pattern:  /{token}/update
+    defaults: { _controller: "BeUbiJobeetBundle:Job:update" }
+    requirements: { _method: post }
+
+beubi_job_delete:
+    pattern:  /{token}/delete
+    defaults: { _controller: "BeUbiJobeetBundle:Job:delete" }
+    requirements: { _method: post }
+    
+beubi_job_publish:
+    pattern:  /{token}/publish
+    defaults: { _controller: "BeUbiJobeetBundle:Job:publish" }
+    requirements: { _method: post }
