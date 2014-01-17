@@ -1,7 +1,7 @@
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin
- 
+
 _sonata_admin:
     resource: .
     type: sonata_admin
@@ -10,8 +10,3 @@ _sonata_admin:
 be_ubi_jobeet:
     resource: "@BeUbiJobeetBundle/Resources/config/routing.yml"
     prefix:   /
-
-# Internal routing configuration to handle ESI
-#_internal:
-#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
-#    prefix:   /_internal

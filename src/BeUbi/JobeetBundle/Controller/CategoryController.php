@@ -13,7 +13,7 @@ class CategoryController extends Controller
   
   public function showAction($slug, $page)
   {
-    $em = $this->getDoctrine()->getEntityManager();
+    $em = $this->getDoctrine()->getManager();
 
     $category = $em->getRepository('BeUbiJobeetBundle:Category')->findOneBySlug($slug);
 

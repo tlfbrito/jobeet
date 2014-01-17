@@ -2,11 +2,12 @@
 
 namespace Acme\DemoBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use JMS\SecurityExtraBundle\Annotation\Secure;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * @Route("/demo/secured")
@@ -17,16 +18,16 @@ class SecuredController extends Controller
      * @Route("/login", name="_demo_login")
      * @Template()
      */
-    public function loginAction()
+    public function loginAction(Request $request)
     {
-        if ($this->get('request')->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
-            $error = $this->get('request')->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
+        if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
+            $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
         } else {
-            $error = $this->get('request')->getSession()->get(SecurityContext::AUTHENTICATION_ERROR);
+            $error = $request->getSession()->get(SecurityContext::AUTHENTICATION_ERROR);
         }
 
         return array(
-            'last_username' => $this->get('request')->getSession()->get(SecurityContext::LAST_USERNAME),
+            'last_username' => $request->getSession()->get(SecurityContext::LAST_USERNAME),
             'error'         => $error,
         );
     }
@@ -59,7 +60,7 @@ class SecuredController extends Controller
 
     /**
      * @Route("/hello/admin/{name}", name="_demo_secured_hello_admin")
-     * @Secure(roles="ROLE_ADMIN")
+     * @Security("is_granted('ROLE_ADMIN')")
      * @Template()
      */
     public function helloadminAction($name)

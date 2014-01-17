@@ -150,29 +150,6 @@ class Affiliate
     }
 
     /**
-     * Add category_affiliates
-     *
-     * @param BeUbi\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliates
-     * @return Affiliate
-     */
-    public function addCategoryAffiliate(\BeUbi\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliates)
-    {
-        $this->category_affiliates[] = $categoryAffiliates;
-    
-        return $this;
-    }
-
-    /**
-     * Remove category_affiliates
-     *
-     * @param BeUbi\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliates
-     */
-    public function removeCategoryAffiliate(\BeUbi\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliates)
-    {
-        $this->category_affiliates->removeElement($categoryAffiliates);
-    }
-
-    /**
      * Get category_affiliates
      *
      * @return Doctrine\Common\Collections\Collection 
@@ -191,5 +168,71 @@ class Affiliate
           $this->created_at = new \DateTime();
         }
 
+    }
+    /**
+     * @var boolean
+     */
+    private $is_active;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $categories;
+
+
+    /**
+     * Set is_active
+     *
+     * @param boolean $isActive
+     * @return Affiliate
+     */
+    public function setIsActive($isActive)
+    {
+        $this->is_active = $isActive;
+    
+        return $this;
+    }
+
+    /**
+     * Get is_active
+     *
+     * @return boolean 
+     */
+    public function getIsActive()
+    {
+        return $this->is_active;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \BeUbi\JobeetBundle\Entity\Category $categories
+     * @return Affiliate
+     */
+    public function addCategorie(\BeUbi\JobeetBundle\Entity\Category $categories)
+    {
+        $this->categories[] = $categories;
+    
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \BeUbi\JobeetBundle\Entity\Category $categories
+     */
+    public function removeCategorie(\BeUbi\JobeetBundle\Entity\Category $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

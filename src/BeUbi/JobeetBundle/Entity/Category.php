@@ -117,29 +117,6 @@ class Category
     }
 
     /**
-     * Add category_affiliates
-     *
-     * @param BeUbi\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliates
-     * @return Category
-     */
-    public function addCategoryAffiliate(\BeUbi\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliates)
-    {
-        $this->category_affiliates[] = $categoryAffiliates;
-    
-        return $this;
-    }
-
-    /**
-     * Remove category_affiliates
-     *
-     * @param BeUbi\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliates
-     */
-    public function removeCategoryAffiliate(\BeUbi\JobeetBundle\Entity\CategoryAffiliate $categoryAffiliates)
-    {
-        $this->category_affiliates->removeElement($categoryAffiliates);
-    }
-
-    /**
      * Get category_affiliates
      *
      * @return Doctrine\Common\Collections\Collection 
@@ -197,5 +174,43 @@ class Category
     public function setSlugValue()
     {
         $this->slug = Jobeet::slugify($this->getName());
+    }
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $affiliates;
+
+
+    /**
+     * Add affiliates
+     *
+     * @param \BeUbi\JobeetBundle\Entity\Affiliate $affiliates
+     * @return Category
+     */
+    public function addAffiliate(\BeUbi\JobeetBundle\Entity\Affiliate $affiliates)
+    {
+        $this->affiliates[] = $affiliates;
+    
+        return $this;
+    }
+
+    /**
+     * Remove affiliates
+     *
+     * @param \BeUbi\JobeetBundle\Entity\Affiliate $affiliates
+     */
+    public function removeAffiliate(\BeUbi\JobeetBundle\Entity\Affiliate $affiliates)
+    {
+        $this->affiliates->removeElement($affiliates);
+    }
+
+    /**
+     * Get affiliates
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAffiliates()
+    {
+        return $this->affiliates;
     }
 }

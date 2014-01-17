@@ -20,7 +20,7 @@ class JobController extends Controller
      */
     public function indexAction()
     {
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
 
       $categories = $em->getRepository('BeUbiJobeetBundle:Category')->getWithJobs();
 
@@ -74,7 +74,7 @@ class JobController extends Controller
     
     public function previewAction($token)
     {
-      $em = $this->getDoctrine()->getEntityManager();
+      $em = $this->getDoctrine()->getManager();
 
       $entity = $em->getRepository('BeUbiJobeetBundle:Job')->findOneByToken($token);
 
@@ -97,10 +97,10 @@ class JobController extends Controller
       $form = $this->createPublishForm($token);
       $request = $this->getRequest();
 
-      $form->bindRequest($request);
+      $form->handleRequest($request);
 
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $entity = $em->getRepository('BeUbiJobeetBundle:Job')->findOneByToken($token);
 
         if (!$entity) {
@@ -111,7 +111,7 @@ class JobController extends Controller
         $em->persist($entity);
         $em->flush();
 
-        $this->get('session')->setFlash('notice', 'Your job is now online for 30 days.');
+        $this->get('session')->getFlashBag()->add('notice', 'Your job is now online for 30 days.');
       }
 
       return $this->redirect($this->generateUrl('beubi_job_preview', array(
@@ -158,7 +158,7 @@ class JobController extends Controller
       $form->bind($request);
 
       if ($form->isValid()) {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $em->persist($entity);
         $em->flush();

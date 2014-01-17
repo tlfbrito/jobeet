@@ -11,7 +11,7 @@ use BeUbi\JobeetBundle\Utils\Jobeet;
  */
 class Job
 {
-    public $file;
+    protected $file;
     /**
      * @var integer $id
      */

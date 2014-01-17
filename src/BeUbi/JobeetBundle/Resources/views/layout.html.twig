@@ -56,18 +56,16 @@
         </div>
         
       <div id="content">
-        {% if app.session.hasFlash('notice') %}
-          <div class="flash_notice">
-            {{ app.session.flash('notice') }}
-          </div>
-        {% endif %}
- 
-        {% if app.session.hasFlash('error') %}
-          <div class="flash_error">
-            {{ app.session.flash('error') }}
-          </div>
-        {% endif %}
- 
+          {% for flashMessage in app.session.flashbag.get('notice') %}
+              <div class="flash_notice">
+                  {{ flashMessage }}
+              </div>
+          {% endfor %}
+          {% for flashMessage in app.session.flashbag.get('error') %}
+              <div class="flash_error">
+                  {{ flashMessage }}
+              </div>
+          {% endfor %}
         <div class="content">
             {% block content %}
             {% endblock %}

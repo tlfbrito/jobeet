@@ -14,10 +14,14 @@ class CategoryRepository extends EntityRepository
 {
   public function getWithJobs()
   {
-    $query = $this->getEntityManager()->createQuery(
-      'SELECT c FROM BeUbiJobeetBundle:Category c LEFT JOIN c.jobs j WHERE j.expires_at > :date AND j.is_activated = :activated'
-    )->setParameter('date', date('Y-m-d H:i:s', time()))->setParameter('activated', 1);
- 
+      $query = $this->createQueryBuilder('c')->select('c')
+                                             ->leftJoin('c.jobs', 'j')
+                                             ->where('j.expires_at > :date')
+                                             ->andWhere('j.is_activated = :activated')
+                                             ->setParameter('date', date('Y-m-d H:i:s', time()))
+                                             ->setParameter('activated', 1)
+                                             ->getQuery()->useResultCache(true, 90000, 'teste');
+
     return $query->getResult();
   }
 }

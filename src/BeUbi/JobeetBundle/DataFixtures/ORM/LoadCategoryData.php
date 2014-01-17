@@ -22,6 +22,12 @@ class LoadCategoryData extends AbstractFixture implements OrderedFixtureInterfac
  
     $administrator = new Category();
     $administrator->setName('Administrator');
+
+    $commercial = new Category();
+    $commercial->setName('Commercial');
+
+    $businessdev = new Category();
+    $businessdev->setName('Business developer');
  
     $em->persist($design);
     $em->persist($programming);
